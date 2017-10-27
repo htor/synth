@@ -1,0 +1,31 @@
+.synth {
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+.synth .keyboard {
+    display: flex;
+    margin-top: 8px;
+}
+.synth .keyboard .key {
+    height: 150px;
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.synth .keyboard .key[id$="b"]:not([id="b"]) {
+    background: black;
+    color: white;
+    width: 28px;
+}
+
+.synth .keyboard .key.down,
+.synth .keyboard .key:hover {
+    background: tomato !important;
+    color: white !important;
+    cursor: pointer;
+}

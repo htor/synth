@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="index.css">
+        <title>synth</title>
+    </head>
+    <body>
+        <div class="synth">
+            <div class="display"></div>
+            <br>
+            <br>
+            <div class="controls">
+                <div class="control">
+                    <label>volume</label>
+                    <input class="volume-control" type="range" min="0" max="1" step="0.01" value="0.5">
+                </div>
+                <div class="control">
+                    <label>octave range</label>
+                    <button onclick="octaveDown()">down</button>
+                    <button onclick="octaveUp()">up</button>
+                </div>
+                <div class="control">
+                    <label>detune</label>
+                    <input class="detune-control" type="range" min="0" max="250" step="1" value="0">
+                </div>
+                <div class="control">
+                    <label>panning</label>
+                    <input class="panning-control" type="range" min="-1" max="1" step="0.01" value="0">
+                </div>
+                <div class="control">
+                    <label>waveform</label>
+                    <select class="wave-control">
+                        <option value="sine">sine</option>
+                        <option value="sawtooth">sawtooth</option>
+                        <option value="square">square</option>
+                        <option value="triangle">triangle</option>
+                    </select>
+                </div>
+                <div class="control">
+                    <label>lfo frequency</label>
+                    <input class="lfo-freq-control" type="range" min="0" max="100" step="0.1" value="0">
+                    <label>lfo gain</label>
+                    <input class="lfo-gain-control" type="range" min="0" max="1" step="0.01" value="0.5">
+                </div>
+                <div class="control">
+                    <label>lfo modulation type</label>
+                    <select class="lfo-modulation-control">
+                        <option value="-">-</option>
+                        <option value="am">AM</option>
+                        <option value="fm">FM</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="keyboard"></div>
+            <br>
+            <p>
+                qawsedrftgyh: play notes<br>
+                z: one octave down<br>
+                x: one octave up<br>
+            </p>
+        </div>
+        <script src="index.js" charset="utf-8"></script>
+    </body>
+</html>
