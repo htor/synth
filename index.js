@@ -113,6 +113,7 @@ const setup = () => {
     synth.lfo.connect(synth.lfoGain);
     synth.panning.connect(synth.context.destination);
     synth.gain.connect(synth.panning);
+    synth.lfo.start(0);
 
     for (let k in synth.keyboard) {
         let key = synth.keyboard[k];
@@ -128,10 +129,20 @@ const setup = () => {
         key.dom.innerHTML = `${key.keyHuman}`;
         key.dom.addEventListener('mousedown', onMouseDown);
         key.dom.addEventListener('mouseup', onMouseUp);
+        key.dom.addEventListener('touchstart', onMouseDown);
+        key.dom.addEventListener('touchend', onMouseUp);
         keyboard.appendChild(key.dom);
     }
-    synth.lfo.start(0);
 
+
+    // play empty file to "activate" audio on mobile
+    window.addEventListener('touchstart', function() {
+        var buffer = synth.context.createBuffer(1, 1, 22050);
+        var source = synth.context.createBufferSource();
+        source.buffer = buffer;
+        source.connect(synth.context.destination);
+        source.noteOn(0);
+    }, false);
 
     waveControl.addEventListener('input', event => {
         synth.wave = event.target.value ;
