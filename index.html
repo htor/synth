@@ -10,7 +10,6 @@
         <div class="synth">
             <div class="display"></div>
             <br>
-            <br>
             <div class="controls">
                 <div class="control">
                     <label>volume</label>
@@ -18,8 +17,8 @@
                 </div>
                 <div class="control">
                     <label>octave range</label>
-                    <button onclick="octaveDown()">down</button>
-                    <button onclick="octaveUp()">up</button>
+                    <button class="octave-down-control">down</button>
+                    <button class="octave-up-control">up</button>
                 </div>
                 <div class="control">
                     <label>detune</label>
@@ -27,7 +26,7 @@
                 </div>
                 <div class="control">
                     <label>panning</label>
-                    <input class="panning-control" type="range" min="-1" max="1" step="0.01" value="0">
+                    L<input class="panning-control" type="range" min="-45" max="45" value="0">R
                 </div>
                 <div class="control">
                     <label>waveform</label>
@@ -41,6 +40,7 @@
                 <div class="control">
                     <label>lfo frequency</label>
                     <input class="lfo-freq-control" type="range" min="0" max="100" step="0.1" value="0">
+                <div class="control">
                     <label>lfo gain</label>
                     <input class="lfo-gain-control" type="range" min="0" max="1" step="0.01" value="0.5">
                 </div>
@@ -53,7 +53,6 @@
                     </select>
                 </div>
             </div>
-            <br>
             <br>
             <div class="keyboard"></div>
             <br>

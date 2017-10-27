@@ -77,6 +77,8 @@ const display = document.querySelector('.display');
 const waveControl = document.querySelector('.wave-control');
 const volumeControl = document.querySelector('.volume-control');
 const detuneControl = document.querySelector('.detune-control');
+const octaveDownControl = document.querySelector('.octave-down-control');
+const octaveUpControl = document.querySelector('.octave-up-control');
 const panningControl = document.querySelector('.panning-control');
 const lfoGainControl = document.querySelector('.lfo-gain-control');
 const lfoFreqControl = document.querySelector('.lfo-freq-control');
@@ -94,6 +96,7 @@ const updateDisplay = () => {
         `lfo mod type: ${synth.lfoModType}<br>`
 }
 const setup = () => {
+    let AudioContext = window.AudioContext || window.webkitAudioContext;
     synth.context = new AudioContext();
     synth.lfo = synth.context.createOscillator();
     synth.lfo.frequency.value = 0;
@@ -102,12 +105,11 @@ const setup = () => {
     synth.lfoGain.gain.value = 0.5;
     synth.gain = synth.context.createGain();
     synth.gain.gain.value = 1;
-    synth.panning = synth.context.createStereoPanner();
-
+    synth.panning = synth.context.createPanner();
+    synth.panning.panningModel = 'equalpower';
     synth.lfoModType = '-';
     synth.wave = 'sine';
     synth.detune = 0;
-
     synth.lfo.connect(synth.lfoGain);
     synth.panning.connect(synth.context.destination);
     synth.gain.connect(synth.panning);
@@ -150,13 +152,23 @@ const setup = () => {
         updateDisplay();
     });
 
+    octaveDownControl.addEventListener('click', octaveDown);
+    octaveUpControl.addEventListener('click', octaveUp);
+
     volumeControl.addEventListener('input', event => {
         synth.gain.gain.value = event.target.value;
         updateDisplay();
     });
 
     panningControl.addEventListener('input', event => {
-        synth.panning.pan.value = event.target.value;
+        var xDeg = parseInt(event.target.value);
+        var zDeg = xDeg + 90;
+        if (zDeg > 90) {
+          zDeg = 180 - zDeg;
+        }
+        var x = Math.sin(xDeg * (Math.PI / 180));
+        var z = Math.sin(zDeg * (Math.PI / 180));
+        synth.panning.setPosition(x, 0, z);
         updateDisplay();
     });
 
