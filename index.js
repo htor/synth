@@ -104,7 +104,7 @@ const setup = () => {
     synth.lfoGain = synth.context.createGain();
     synth.lfoGain.gain.value = 0.5;
     synth.gain = synth.context.createGain();
-    synth.gain.gain.value = 1;
+    synth.gain.gain.value = 0.5;
     synth.panning = synth.context.createPanner();
     synth.panning.panningModel = 'equalpower';
     synth.lfoModType = '-';
